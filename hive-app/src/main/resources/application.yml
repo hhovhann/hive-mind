@@ -10,6 +10,13 @@ spring:
       username: ${HIVE_NEO4J_USER:neo4j}
       password: ${HIVE_NEO4J_PASSWORD:hivemind-dev}
     connection-timeout: 5s
+    pool:
+      # The driver defaults to 100 connections, which is below the concurrency this
+      # is meant to serve: at 200 concurrent the pending-acquisition queue overflows
+      # and requests fail with a TransientException rather than queueing. One
+      # connection per in-flight request, plus headroom.
+      max-connection-pool-size: ${HIVE_NEO4J_POOL:300}
+      connection-acquisition-timeout: 30s
 
 # The one place the model endpoint is configured. LlmConfiguration builds the chat
 # and embedding clients from these, so switching providers is this block only.

@@ -344,6 +344,74 @@ too often, and even forcing it to name what changed did not help — it always n
 something. The honest fixes are a stronger adjudicator model, or a mechanism that
 does not rely on one, not more prompt tuning.
 
+## What "200 concurrent users" actually costs
+
+The job this was designed against asks for 200 concurrent users, so that claim got
+measured rather than asserted. `scripts/loadtest/LoadTest.java` runs with plain
+`java LoadTest.java` — no install, no build step — so the numbers below are
+reproducible by anyone who clones the repo.
+
+Two endpoints exist for exactly this reason: `/api/retrieve` stops after assembling
+context, `/api/ask` also generates. Measured together, every result reads as "the
+model is slow" and tells you nothing about your own system.
+
+**Retrieval — the half that is ours to make fast.** Concurrency ramp, 15s per level:
+
+| concurrent | req/s | p50 | p99 | errors |
+|---|---|---|---|---|
+| 1 | 191 | 4ms | 10ms | 0 |
+| 10 | 1,500 | 6ms | 11ms | 0 |
+| 50 | 2,304 | 20ms | 39ms | 0 |
+| **200** | **2,314** | **83ms** | **147ms** | **0** |
+
+Getting there took two fixes, and the second only became visible after the first:
+
+| at 200 concurrent | req/s | p99 | errors |
+|---|---|---|---|
+| baseline | 245 | 879ms | 0 |
+| + embedding cache | 1,912 | 134ms | **15,811** |
+| + Neo4j pool raised to 300 | **2,314** | 147ms | 0 |
+
+Throughput originally flattened at ~245 req/s from 10 concurrent upward — textbook
+queueing (245 req/s × 813ms ≈ 200 in flight). The constraint was that **every
+retrieval embeds its question before it can touch the index**, turning a graph query
+into a network round trip. Caching those vectors gave 8×.
+
+Which then exposed the next limit: the Neo4j driver defaults to a 100-connection
+pool, so at 200 concurrent the pending-acquisition queue overflowed and requests
+failed with `TransientException` instead of queueing. Not a bug — a default sized for
+a different workload. Removing one bottleneck reveals the next, which is the whole
+reason to ramp rather than measure one level.
+
+**Generation — the half that is not.**
+
+| concurrent | req/s | p50 | p99 |
+|---|---|---|---|
+| 1 | 1.0 | 908ms | 2.6s |
+| 4 | 1.1 | 3.3s | 6.3s |
+| 16 | **0.3** | 30.5s | 80.2s |
+
+Throughput is flat at ~1 req/s no matter the concurrency, and *falls* at 16 — a
+single local 8B model thrashing between requests rather than serializing them.
+
+**So the honest answer to "does it handle 200 concurrent users" is: the application
+does, by a factor of ~2,300; the model does not, by a factor of ~1.** Serving that
+many people is a question of model capacity — replicas, a hosted provider with real
+concurrency, or an answer cache — and almost nothing to do with the application
+architecture. Worth knowing which of the two you are actually buying when you scale.
+
+Two caveats, since a benchmark is only worth its method. The load test asks eight
+fixed questions, so after warm-up the embedding cache hits ~100% — a best case that
+real traffic with unique questions would erode back toward the 245 req/s baseline.
+And 200 concurrent *users* is not 200 concurrent *requests*: people read between
+questions, so this measures a far heavier load than 200 users would generate.
+
+```bash
+./gradlew :hive-app:bootRun &                                   # server on :8080
+java scripts/loadtest/LoadTest.java --endpoint retrieve --ramp 1,10,50,200
+java scripts/loadtest/LoadTest.java --endpoint ask --ramp 1,4,16 --seconds 25
+```
+
 ## Browsing it
 
 ```bash
@@ -402,8 +470,24 @@ produced.
 - [x] **M1.4** — Entity resolution and bi-temporal graph writes
 - [x] **M1.5** — Hybrid retrieval and cited answers
 - [x] **M1.6** — Obsidian vault export and the answer-level eval harness
-- [ ] **M2** — Real connectors: Slack (socket mode + backfill), Notion, Zoom
-- [ ] **M3** — RBAC, MCP server, Slack app, load test at 200 concurrent
+**M2 — real connectors.** Not started. The readers already parse the live wire
+formats, since the sample corpus is written in them, so what remains is auth,
+pagination, incremental cursors, rate limits, and handling edits and deletes by
+tombstoning a source and invalidating the facts derived from it. All of it needs
+credentials to verify against the real APIs.
+
+- [ ] Slack — socket mode for live events, `conversations.history` for backfill
+- [ ] Notion — incremental sync on `last_edited_time`
+- [ ] Zoom — recording webhooks, plus Whisper and diarisation for audio-only meetings
+
+**M3 — production concerns.** One of four done.
+
+- [x] REST API (`/api/ask`, `/api/retrieve`) and load test at 200 concurrent
+- [ ] RBAC — materialise per-principal grants from the source systems and cache them
+      in Redis, which is in the compose file and currently unused. The grant model and
+      its enforcement in Cypher are built; what is missing is where real grants come from
+- [ ] MCP server — expose `search_knowledge`, `trace_decision`, `find_owner` as tools
+- [ ] Slack app — `/hive` command and thread mentions
 
 ## License
 

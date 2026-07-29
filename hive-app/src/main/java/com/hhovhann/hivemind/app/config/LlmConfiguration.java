@@ -29,6 +29,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class LlmConfiguration {
 
+    /** ~10k vectors at 768 floats is roughly 30MB — cheap next to what it saves. */
+    private static final int EMBEDDING_CACHE_ENTRIES = 10_000;
+
     private final HiveLlmProperties properties;
     private final boolean logCalls;
 
@@ -70,14 +73,20 @@ public class LlmConfiguration {
                 .build();
     }
 
+    /**
+     * Wrapped in a cache because every retrieval embeds its question before it can
+     * touch the index, turning a graph query into a network round trip.
+     */
     @Bean
     public EmbeddingModel embeddingModel() {
-        return OpenAiEmbeddingModel.builder()
-                .httpClientBuilder(httpClient())
-                .baseUrl(properties.baseUrl())
-                .apiKey(properties.apiKey())
-                .modelName(properties.embeddingModel())
-                .timeout(Duration.ofSeconds(60))
-                .build();
+        return new CachingEmbeddingModel(
+                OpenAiEmbeddingModel.builder()
+                        .httpClientBuilder(httpClient())
+                        .baseUrl(properties.baseUrl())
+                        .apiKey(properties.apiKey())
+                        .modelName(properties.embeddingModel())
+                        .timeout(Duration.ofSeconds(60))
+                        .build(),
+                EMBEDDING_CACHE_ENTRIES);
     }
 }
