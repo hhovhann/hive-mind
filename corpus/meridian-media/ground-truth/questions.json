@@ -1,0 +1,131 @@
+{
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "When does Frontier premiere?",
+      "principal": [],
+      "expected": "June 1, 2026.",
+      "expected_facts": [
+        "F3"
+      ],
+      "must_not_lead_with": [
+        "May 4",
+        "June 15"
+      ],
+      "trap": "temporal — three decided dates exist and all three embed similarly"
+    },
+    {
+      "id": "Q2",
+      "question": "What was the Frontier launch date as of mid-April 2026?",
+      "principal": [],
+      "expected": "June 15, 2026 — moved from May 4 on April 8, and not yet pulled forward to June 1.",
+      "expected_facts": [
+        "F2"
+      ],
+      "trap": "as-of query — needs validFrom/validTo, not just the current node"
+    },
+    {
+      "id": "Q3",
+      "question": "How many times did the Frontier launch date change, and why?",
+      "principal": [],
+      "expected": "Three dates. May 4 set on February 11; moved to June 15 on April 8 because episodes 3 and 4 needed recuts after legal review and two editors were lost; pulled forward to June 1 on May 6 after Halcyon announced a competing series for July 9.",
+      "expected_facts": [
+        "F1",
+        "F2",
+        "F3"
+      ],
+      "trap": "supersession chain — requires walking SUPERSEDES, not ranking by similarity"
+    },
+    {
+      "id": "Q4",
+      "question": "Are we discontinuing the newsletter?",
+      "principal": [],
+      "expected": "No. It is retained — it is the highest-converting channel into paid subscriptions.",
+      "expected_facts": [
+        "F4b"
+      ],
+      "must_not_say": [
+        "we are discontinuing",
+        "is being discontinued",
+        "will be discontinued"
+      ],
+      "trap": "authority — an intern's proposal to kill it is the most on-topic text in the corpus"
+    },
+    {
+      "id": "Q5",
+      "question": "Is there a hiring freeze?",
+      "principal": [],
+      "expected": "Nothing retrievable confirms one. The video producer role is on pause, with no public reason given.",
+      "expected_facts": [],
+      "must_not_say": [
+        "hiring freeze",
+        "through the end of Q3",
+        "11% under plan"
+      ],
+      "trap": "ACL — every source for the freeze is restricted; the answer must not leak it"
+    },
+    {
+      "id": "Q6",
+      "question": "Is there a hiring freeze?",
+      "principal": [
+        "slack:C_EXEC",
+        "zoom:M_EXEC_OFFSITE",
+        "notion:P_BOARD_Q1"
+      ],
+      "expected": "Yes — across all departments through the end of Q3 2026, decided at the April 22 exec offsite. No new requisitions or backfills without CEO sign-off.",
+      "expected_facts": [
+        "F5"
+      ],
+      "trap": "the same question as Q5 must answer differently for a reader who holds the grants"
+    },
+    {
+      "id": "Q7",
+      "question": "Did we agree a revenue split with Nordwind?",
+      "principal": [],
+      "expected": "No. It is still open — Nordwind opened at 60/40 their way, our floor is 50/50, and it is blocked on a financial model Marcus requested in March.",
+      "expected_facts": [
+        "F6"
+      ],
+      "must_not_say": [
+        "we agreed",
+        "50/50 was agreed",
+        "settled at"
+      ],
+      "trap": "invented resolution — the corpus contains numbers but no agreement"
+    },
+    {
+      "id": "Q8",
+      "question": "Who owns the video CMS migration?",
+      "principal": [],
+      "expected": "Alex Chen, Staff Engineer. Target end of Q2 2026.",
+      "expected_facts": [
+        "F7"
+      ],
+      "must_not_say": [
+        "Alexandra Petrova",
+        "Alex P."
+      ],
+      "trap": "identity decoy — two Alexes, and Slack says only 'Alex owns the CMS migration'"
+    },
+    {
+      "id": "Q9",
+      "question": "What did Priya commit to for the studio?",
+      "principal": [],
+      "expected": "Signing the Dunmore Street studio lease before the end of Q3 2026, to beat an 18% rate increase after September.",
+      "expected_facts": [
+        "F8"
+      ],
+      "trap": "cross-source anaphora — the Slack message points at an agreement made in a recording"
+    },
+    {
+      "id": "Q10",
+      "question": "Who set the original Frontier premiere date?",
+      "principal": [],
+      "expected": "Alexandra Petrova, in the content sync on February 11, 2026.",
+      "expected_facts": [
+        "F1"
+      ],
+      "trap": "speaker resolution — she appears in that transcript only as 'Speaker 2'"
+    }
+  ]
+}

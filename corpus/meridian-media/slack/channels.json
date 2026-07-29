@@ -1,0 +1,32 @@
+[
+  {
+    "id": "C_GENERAL",
+    "name": "general",
+    "is_private": false,
+    "visibility": "PUBLIC"
+  },
+  {
+    "id": "C_CONTENT",
+    "name": "content-prod",
+    "is_private": false,
+    "visibility": "PUBLIC"
+  },
+  {
+    "id": "C_ENG",
+    "name": "eng",
+    "is_private": false,
+    "visibility": "PUBLIC"
+  },
+  {
+    "id": "C_FRONTIER",
+    "name": "frontier-launch",
+    "is_private": false,
+    "visibility": "PUBLIC"
+  },
+  {
+    "id": "C_EXEC",
+    "name": "exec",
+    "is_private": true,
+    "visibility": "RESTRICTED"
+  }
+]

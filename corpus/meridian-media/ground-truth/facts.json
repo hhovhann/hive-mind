@@ -1,0 +1,188 @@
+{
+  "facts": [
+    {
+      "id": "F1",
+      "type": "DECISION",
+      "statement": "Frontier premieres on May 4, 2026.",
+      "owner": "Alexandra Petrova",
+      "occurred_at": "2026-02-11T09:00:48Z",
+      "status": "SUPERSEDED",
+      "superseded_by": "F2",
+      "sources": [
+        "zoom:mtg_8f2c41ab9e",
+        "slack:C_FRONTIER/1770823200.000100"
+      ],
+      "acl": "public",
+      "source_keys": [
+        "zoom:content-sync-2026-02-11",
+        "slack:frontier-date-locked"
+      ]
+    },
+    {
+      "id": "F2",
+      "type": "DECISION",
+      "statement": "Frontier moves to June 15, 2026, because post-production needs six more weeks.",
+      "owner": "Alexandra Petrova",
+      "occurred_at": "2026-04-08T10:29:00Z",
+      "status": "SUPERSEDED",
+      "supersedes": "F1",
+      "superseded_by": "F3",
+      "sources": [
+        "slack:C_CONTENT/1775642700.000100"
+      ],
+      "acl": "public",
+      "source_keys": [
+        "slack:frontier-date-slips"
+      ]
+    },
+    {
+      "id": "F3",
+      "type": "DECISION",
+      "statement": "Frontier premieres on June 1, 2026, pulled forward ahead of Halcyon's July 9 series.",
+      "owner": "Alexandra Petrova",
+      "occurred_at": "2026-05-06T09:59:00Z",
+      "status": "AGREED",
+      "supersedes": "F2",
+      "sources": [
+        "slack:C_FRONTIER/1778060400.000100",
+        "notion:P_FRONTIER_PLAN"
+      ],
+      "acl": "public",
+      "note": "The current answer. Notion states this date but carries no trace of F1 or F2.",
+      "source_keys": [
+        "slack:frontier-date-pulled-forward",
+        "notion:P_FRONTIER_PLAN"
+      ]
+    },
+    {
+      "id": "F4a",
+      "type": "DECISION",
+      "statement": "The newsletter is retained; the question is closed until 2027 planning.",
+      "owner": "Marcus Webb",
+      "occurred_at": "2026-03-18T08:33:00Z",
+      "status": "AGREED",
+      "sources": [
+        "slack:C_EXEC/1773822600.000100"
+      ],
+      "acl": "requires slack:C_EXEC",
+      "note": "Extracted from the private channel, so this instance is restricted.",
+      "source_keys": [
+        "slack:newsletter-settled"
+      ]
+    },
+    {
+      "id": "F4b",
+      "type": "DECISION",
+      "statement": "The newsletter is retained.",
+      "owner": "Alexandra Petrova",
+      "occurred_at": "2026-03-19T10:45:00Z",
+      "status": "AGREED",
+      "sources": [
+        "notion:P_NEWSLETTER"
+      ],
+      "acl": "public",
+      "note": "The same outcome, independently stated in a public document. A reader without the exec grant should reach this one and not F4a — the conclusion is public even though the deliberation is not.",
+      "source_keys": [
+        "notion:P_NEWSLETTER"
+      ]
+    },
+    {
+      "id": "F5",
+      "type": "DECISION",
+      "statement": "Hiring freeze across all departments through the end of Q3 2026; no new requisitions or backfills without CEO sign-off.",
+      "owner": "Marcus Webb",
+      "occurred_at": "2026-04-22T13:00:21Z",
+      "status": "AGREED",
+      "sources": [
+        "zoom:mtg_c740e28f1d",
+        "slack:C_EXEC/1776876300.000100",
+        "notion:P_BOARD_Q1"
+      ],
+      "acl": "requires zoom:M_EXEC_OFFSITE and slack:C_EXEC and notion:P_BOARD_Q1",
+      "note": "Every source is restricted. The only public trace is Priya declining to explain why a role is paused, which must not be enough to reconstruct this.",
+      "source_keys": [
+        "zoom:exec-offsite-2026-04-22",
+        "slack:hiring-freeze-decision",
+        "notion:P_BOARD_Q1"
+      ]
+    },
+    {
+      "id": "F6",
+      "type": "OPEN_QUESTION",
+      "statement": "The revenue split with Nordwind Studios is unresolved.",
+      "owner": "Jules Rivera",
+      "occurred_at": "2026-03-05T14:00:42Z",
+      "status": "PROPOSED",
+      "sources": [
+        "zoom:mtg_5b19d7c204",
+        "slack:C_GENERAL/1772788500.000100",
+        "slack:C_GENERAL/1779291000.000100",
+        "notion:P_NORDWIND"
+      ],
+      "acl": "public",
+      "note": "Still open at the end of the corpus. Answering that a split was agreed is a failure.",
+      "source_keys": [
+        "zoom:nordwind-call-2026-03-05",
+        "slack:nordwind-debrief",
+        "slack:nordwind-still-open",
+        "notion:P_NORDWIND"
+      ]
+    },
+    {
+      "id": "F7",
+      "type": "ACTION_ITEM",
+      "statement": "Alex Chen owns the video CMS migration to Mux, targeting the end of Q2 2026.",
+      "owner": "Alex Chen",
+      "due_date": "2026-06-30",
+      "occurred_at": "2026-03-11T09:16:00Z",
+      "status": "IN_PROGRESS",
+      "sources": [
+        "slack:C_ENG/1773219900.000100",
+        "notion:P_CMS_MIGRATION",
+        "notion:P_Q2_ROADMAP"
+      ],
+      "acl": "public",
+      "note": "Slack says only 'Alex owns the CMS migration'. Resolving that to Alexandra Petrova is the identity failure this fact exists to catch.",
+      "source_keys": [
+        "slack:cms-migration-owner",
+        "notion:P_CMS_MIGRATION",
+        "notion:P_Q2_ROADMAP"
+      ]
+    },
+    {
+      "id": "F8",
+      "type": "COMMITMENT",
+      "statement": "Priya Raghunathan will have the Dunmore Street studio lease signed before the end of Q3 2026.",
+      "owner": "Priya Raghunathan",
+      "due_date": "2026-09-30",
+      "occurred_at": "2026-06-17T10:00:41Z",
+      "status": "IN_PROGRESS",
+      "sources": [
+        "zoom:mtg_2ae6b9f3c8",
+        "slack:C_GENERAL/1781775000.000100"
+      ],
+      "acl": "public",
+      "note": "The Slack message says only 'what we agreed in yesterday's ops sync'. Without the recording there is no agreement to point at.",
+      "source_keys": [
+        "zoom:ops-sync-2026-06-17",
+        "slack:studio-lease-commitment"
+      ]
+    },
+    {
+      "id": "F9",
+      "type": "DECISION",
+      "statement": "Launch dates are announced as a window; a specific date is committed only at picture lock on the final episode.",
+      "owner": "Alexandra Petrova",
+      "occurred_at": "2026-06-24T15:01:05Z",
+      "status": "AGREED",
+      "sources": [
+        "zoom:mtg_9d3f07ba55"
+      ],
+      "acl": "public",
+      "note": "A process decision that exists only in a recording, made in response to F1-F3.",
+      "source_keys": [
+        "zoom:frontier-retro-2026-06-24"
+      ]
+    }
+  ]
+}

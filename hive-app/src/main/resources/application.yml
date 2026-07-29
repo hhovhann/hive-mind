@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: hive-mind
+  threads:
+    virtual:
+      enabled: true
+  neo4j:
+    uri: ${HIVE_NEO4J_URI:bolt://localhost:7687}
+    authentication:
+      username: ${HIVE_NEO4J_USER:neo4j}
+      password: ${HIVE_NEO4J_PASSWORD:hivemind-dev}
+    connection-timeout: 5s
+
+# The one place the model endpoint is configured. LlmConfiguration builds the chat
+# and embedding clients from these, so switching providers is this block only.
+hive:
+  corpus:
+    # Relative to the repo root — bootRun sets its working directory there.
+    path: ${HIVE_CORPUS_PATH:corpus/meridian-media}
+  llm:
+    base-url: ${HIVE_LLM_BASE_URL:http://localhost:1234/v1}
+    api-key: ${HIVE_LLM_API_KEY:lm-studio}
+    chat-model: ${HIVE_LLM_CHAT_MODEL:meta-llama-3.1-8b-instruct}
+    embedding-model: ${HIVE_LLM_EMBEDDING_MODEL:text-embedding-nomic-embed-text-v1.5}
+    log-calls: ${HIVE_LLM_LOG:false}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.hhovhann.hivemind: DEBUG

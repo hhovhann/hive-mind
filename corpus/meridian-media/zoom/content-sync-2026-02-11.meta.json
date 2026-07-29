@@ -1,0 +1,30 @@
+{
+  "uuid": "mtg_8f2c41ab9e",
+  "topic": "Weekly content sync",
+  "start_time": "2026-02-11T09:00:00Z",
+  "end_time": "2026-02-11T09:01:46Z",
+  "scope": {
+    "id": "M_CONTENT_SYNC",
+    "visibility": "PUBLIC"
+  },
+  "participants": [
+    {
+      "name": "Alexandra Petrova",
+      "email": "alexandra.petrova@meridian.media"
+    },
+    {
+      "name": "Dana Okonkwo",
+      "email": "dana.okonkwo@meridian.media"
+    },
+    {
+      "name": "Priya Raghunathan",
+      "email": "priya.raghunathan@meridian.media"
+    }
+  ],
+  "recording_files": [
+    {
+      "file_type": "TRANSCRIPT",
+      "file_name": "content-sync-2026-02-11.vtt"
+    }
+  ]
+}

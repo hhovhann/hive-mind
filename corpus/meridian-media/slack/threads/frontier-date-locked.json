@@ -1,0 +1,42 @@
+{
+  "channel": {
+    "id": "C_FRONTIER",
+    "name": "frontier-launch",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1770823200.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1770823200.000100",
+      "thread_ts": "1770823200.000100",
+      "user": "U_APETROVA",
+      "text": "Recap from this morning's sync so it's written down somewhere: Frontier premieres May 4. Six episodes, weekly drop after that.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1770823200000100"
+    },
+    {
+      "type": "message",
+      "ts": "1770823440.000101",
+      "thread_ts": "1770823200.000100",
+      "user": "U_DANA",
+      "text": "May 4 works for post. That's eleven weeks from picture lock on ep 1, which is tight but doable as long as we don't add another cut round.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1770823440000101"
+    },
+    {
+      "type": "message",
+      "ts": "1770823740.000102",
+      "thread_ts": "1770823200.000100",
+      "user": "U_PRIYA",
+      "text": "Noted. I'll build the promo calendar around May 4.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1770823740000102"
+    },
+    {
+      "type": "message",
+      "ts": "1770823920.000103",
+      "thread_ts": "1770823200.000100",
+      "user": "U_APETROVA",
+      "text": "Thanks. Treat May 4 as locked unless post tells us otherwise.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1770823920000103"
+    }
+  ]
+}

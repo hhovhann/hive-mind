@@ -1,0 +1,82 @@
+[
+  {
+    "id": "U_APETROVA",
+    "name": "apetrova",
+    "real_name": "Alexandra Petrova",
+    "profile": {
+      "display_name": "Alex P.",
+      "email": "alexandra.petrova@meridian.media",
+      "title": "VP Content"
+    }
+  },
+  {
+    "id": "U_ACHEN",
+    "name": "achen",
+    "real_name": "Alex Chen",
+    "profile": {
+      "display_name": "Alex Chen",
+      "email": "alex.chen@meridian.media",
+      "title": "Staff Engineer"
+    }
+  },
+  {
+    "id": "U_PRIYA",
+    "name": "priya",
+    "real_name": "Priya Raghunathan",
+    "profile": {
+      "display_name": "Priya R.",
+      "email": "priya.raghunathan@meridian.media",
+      "title": "Head of Operations"
+    }
+  },
+  {
+    "id": "U_MARCUS",
+    "name": "marcus",
+    "real_name": "Marcus Webb",
+    "profile": {
+      "display_name": "Marcus Webb",
+      "email": "marcus.webb@meridian.media",
+      "title": "Chief Executive Officer"
+    }
+  },
+  {
+    "id": "U_DANA",
+    "name": "dana",
+    "real_name": "Dana Okonkwo",
+    "profile": {
+      "display_name": "Dana O.",
+      "email": "dana.okonkwo@meridian.media",
+      "title": "Head of Post-Production"
+    }
+  },
+  {
+    "id": "U_TOMB",
+    "name": "tomb",
+    "real_name": "Tom Bergstrom",
+    "profile": {
+      "display_name": "Tom B.",
+      "email": "tom.bergstrom@meridian.media",
+      "title": "Newsletter Editor"
+    }
+  },
+  {
+    "id": "U_SOFIA",
+    "name": "sofia.m",
+    "real_name": "Sofia Marques",
+    "profile": {
+      "display_name": "Sofia M.",
+      "email": "sofia.marques@meridian.media",
+      "title": "Content Intern"
+    }
+  },
+  {
+    "id": "U_JULES",
+    "name": "jules",
+    "real_name": "Jules Rivera",
+    "profile": {
+      "display_name": "Jules R.",
+      "email": "jules.rivera@meridian.media",
+      "title": "Head of Partnerships"
+    }
+  }
+]

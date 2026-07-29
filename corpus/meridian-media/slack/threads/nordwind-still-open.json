@@ -1,0 +1,34 @@
+{
+  "channel": {
+    "id": "C_GENERAL",
+    "name": "general",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1779291000.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1779291000.000100",
+      "thread_ts": "1779291000.000100",
+      "user": "U_APETROVA",
+      "text": "Where did we land with Nordwind in the end? I'm scoping Q3 and I don't know whether to plan for a co-production or not.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1779291000000100"
+    },
+    {
+      "type": "message",
+      "ts": "1779291720.000101",
+      "thread_ts": "1779291000.000100",
+      "user": "U_JULES",
+      "text": "Still open. We never settled the revenue split — it's been sitting behind the model Marcus asked for back in March.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1779291720000101"
+    },
+    {
+      "type": "message",
+      "ts": "1779291840.000102",
+      "thread_ts": "1779291000.000100",
+      "user": "U_JULES",
+      "text": "I'd plan Q3 without it and treat it as upside if it lands.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1779291840000102"
+    }
+  ]
+}

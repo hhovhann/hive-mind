@@ -1,0 +1,66 @@
+name: hive-mind
+
+services:
+  # Graph + vectors in one store. Native vector indexes need 5.13+; 5.26 is LTS.
+  neo4j:
+    image: neo4j:5.26-community
+    container_name: hive-neo4j
+    ports:
+      - "7474:7474"   # HTTP browser — http://localhost:7474
+      - "7687:7687"   # Bolt
+    environment:
+      NEO4J_AUTH: neo4j/hivemind-dev
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_server_memory_heap_initial__size: 1G
+      NEO4J_server_memory_heap_max__size: 2G
+      NEO4J_server_memory_pagecache_size: 1G
+      NEO4J_dbms_security_procedures_unrestricted: apoc.*
+    volumes:
+      - neo4j-data:/data
+      - neo4j-logs:/logs
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:7474 >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  # Operational state only: principals, roles, ingest cursors, audit log.
+  # Knowledge lives in Neo4j; this is the boring, transactional half.
+  postgres:
+    image: postgres:16-alpine
+    container_name: hive-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: hivemind
+      POSTGRES_USER: hivemind
+      POSTGRES_PASSWORD: hivemind-dev
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hivemind -d hivemind"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # Embedding cache, resolved ACL scopes per principal, rate limiting.
+  redis:
+    image: redis:7-alpine
+    container_name: hive-redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  neo4j-data:
+  neo4j-logs:
+  postgres-data:
+  redis-data:

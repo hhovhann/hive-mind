@@ -1,0 +1,185 @@
+{
+  "entities": [
+    {
+      "canonical": "Alexandra Petrova",
+      "email": "alexandra.petrova@meridian.media",
+      "aliases": [
+        {
+          "system": "slack",
+          "value": "U_APETROVA"
+        },
+        {
+          "system": "slack",
+          "value": "apetrova"
+        },
+        {
+          "system": "slack",
+          "value": "Alex P."
+        },
+        {
+          "system": "notion",
+          "value": "Alexandra Petrova"
+        },
+        {
+          "system": "zoom",
+          "value": "Alexandra Petrova"
+        },
+        {
+          "system": "zoom",
+          "value": "content-sync-2026-02-11:Speaker 2"
+        },
+        {
+          "system": "mention",
+          "value": "Alex"
+        }
+      ]
+    },
+    {
+      "canonical": "Alex Chen",
+      "email": "alex.chen@meridian.media",
+      "aliases": [
+        {
+          "system": "slack",
+          "value": "U_ACHEN"
+        },
+        {
+          "system": "slack",
+          "value": "achen"
+        },
+        {
+          "system": "slack",
+          "value": "Alex Chen"
+        },
+        {
+          "system": "notion",
+          "value": "Alex Chen"
+        },
+        {
+          "system": "mention",
+          "value": "Alex"
+        }
+      ]
+    },
+    {
+      "canonical": "Priya Raghunathan",
+      "email": "priya.raghunathan@meridian.media",
+      "aliases": [
+        {
+          "system": "slack",
+          "value": "U_PRIYA"
+        },
+        {
+          "system": "slack",
+          "value": "priya"
+        },
+        {
+          "system": "slack",
+          "value": "Priya R."
+        },
+        {
+          "system": "notion",
+          "value": "Priya Raghunathan"
+        },
+        {
+          "system": "zoom",
+          "value": "Priya Raghunathan"
+        },
+        {
+          "system": "zoom",
+          "value": "content-sync-2026-02-11:Speaker 3"
+        }
+      ]
+    },
+    {
+      "canonical": "Dana Okonkwo",
+      "email": "dana.okonkwo@meridian.media",
+      "aliases": [
+        {
+          "system": "slack",
+          "value": "U_DANA"
+        },
+        {
+          "system": "slack",
+          "value": "dana"
+        },
+        {
+          "system": "notion",
+          "value": "Dana Okonkwo"
+        },
+        {
+          "system": "zoom",
+          "value": "Dana Okonkwo"
+        },
+        {
+          "system": "zoom",
+          "value": "content-sync-2026-02-11:Speaker 1"
+        }
+      ]
+    },
+    {
+      "canonical": "Marcus Webb",
+      "email": "marcus.webb@meridian.media",
+      "aliases": [
+        {
+          "system": "slack",
+          "value": "U_MARCUS"
+        },
+        {
+          "system": "slack",
+          "value": "marcus"
+        },
+        {
+          "system": "notion",
+          "value": "Marcus Webb"
+        },
+        {
+          "system": "zoom",
+          "value": "Marcus Webb"
+        }
+      ]
+    },
+    {
+      "canonical": "Jules Rivera",
+      "email": "jules.rivera@meridian.media",
+      "aliases": [
+        {
+          "system": "slack",
+          "value": "U_JULES"
+        },
+        {
+          "system": "slack",
+          "value": "jules"
+        },
+        {
+          "system": "notion",
+          "value": "Jules Rivera"
+        },
+        {
+          "system": "zoom",
+          "value": "Jules Rivera"
+        }
+      ]
+    },
+    {
+      "canonical": "Ingrid Halvorsen",
+      "email": "i.halvorsen@nordwindstudios.no",
+      "external": true,
+      "organisation": "Nordwind Studios",
+      "aliases": [
+        {
+          "system": "zoom",
+          "value": "Ingrid Halvorsen"
+        }
+      ]
+    }
+  ],
+  "non_matches": [
+    {
+      "pair": [
+        "Alexandra Petrova",
+        "Alex Chen"
+      ],
+      "why": "Both are called Alex and both appear as owners of things. Merging them makes the VP of Content own a CMS migration and an engineer own the launch slate."
+    }
+  ]
+}

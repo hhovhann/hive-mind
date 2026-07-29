@@ -1,0 +1,44 @@
+[versions]
+java = "25"
+springBoot = "4.1.0"
+langchain4j = "1.18.0"
+testcontainers = "2.0.5"
+assertj = "3.27.3"
+
+[libraries]
+# BOMs — imported as platforms, so module build files stay version-free
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
+langchain4j-bom = { module = "dev.langchain4j:langchain4j-bom", version.ref = "langchain4j" }
+testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
+
+# Spring
+spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+# LangChain4j
+langchain4j = { module = "dev.langchain4j:langchain4j" }
+langchain4j-open-ai = { module = "dev.langchain4j:langchain4j-open-ai" }
+langchain4j-http-jdk = { module = "dev.langchain4j:langchain4j-http-client-jdk" }
+langchain4j-open-ai-spring-boot-starter = { module = "dev.langchain4j:langchain4j-open-ai-spring-boot-starter" }
+
+# Storage
+neo4j-driver = { module = "org.neo4j.driver:neo4j-java-driver" }
+# Boot 4 split spring-boot-autoconfigure into per-technology modules; the Neo4j
+# Driver bean now comes from here rather than from the driver being on the classpath.
+spring-boot-neo4j = { module = "org.springframework.boot:spring-boot-neo4j" }
+
+# Serialization
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind" }
+jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" }
+
+# Test
+assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+testcontainers-junit = { module = "org.testcontainers:testcontainers-junit-jupiter" }
+testcontainers-neo4j = { module = "org.testcontainers:testcontainers-neo4j" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }

@@ -1,0 +1,26 @@
+{
+  "channel": {
+    "id": "C_GENERAL",
+    "name": "general",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1777029600.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1777029600.000100",
+      "thread_ts": "1777029600.000100",
+      "user": "U_SOFIA",
+      "text": "Is the video producer role still open? A friend of mine was going to apply.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1777029600000100"
+    },
+    {
+      "type": "message",
+      "ts": "1777032420.000101",
+      "thread_ts": "1777029600.000100",
+      "user": "U_PRIYA",
+      "text": "Tell them to hold off for now — that one's on pause. I'd rather not say more than that here.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1777032420000101"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "channel": {
+    "id": "C_CONTENT",
+    "name": "content-prod",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1781090100.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1781090100.000100",
+      "thread_ts": "1781090100.000100",
+      "user": "U_APETROVA",
+      "text": "Frontier numbers after week one: 340k completed views on ep 1, well ahead of the 200k we modelled.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_CONTENT/p1781090100000100"
+    },
+    {
+      "type": "message",
+      "ts": "1781090460.000101",
+      "thread_ts": "1781090100.000100",
+      "user": "U_DANA",
+      "text": "And we did it with one cut round on eps 5 and 6. Worth remembering next time someone tells us two rounds is non-negotiable.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_CONTENT/p1781090460000101"
+    },
+    {
+      "type": "message",
+      "ts": "1781090760.000102",
+      "thread_ts": "1781090100.000100",
+      "user": "U_APETROVA",
+      "text": "Noted, but let's not turn one data point into a policy.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_CONTENT/p1781090760000102"
+    }
+  ]
+}

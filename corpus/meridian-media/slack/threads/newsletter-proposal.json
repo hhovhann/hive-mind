@@ -1,0 +1,42 @@
+{
+  "channel": {
+    "id": "C_GENERAL",
+    "name": "general",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1773756120.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1773756120.000100",
+      "thread_ts": "1773756120.000100",
+      "user": "U_SOFIA",
+      "text": "Question from the intern corner: has anyone checked whether the newsletter is still worth keeping? Open rate is 12% and it eats most of Tom's week.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1773756120000100"
+    },
+    {
+      "type": "message",
+      "ts": "1773756240.000101",
+      "thread_ts": "1773756120.000100",
+      "user": "U_SOFIA",
+      "text": "Feels like we should just discontinue it and put that time into YouTube shorts instead.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1773756240000101"
+    },
+    {
+      "type": "message",
+      "ts": "1773757620.000102",
+      "thread_ts": "1773756120.000100",
+      "user": "U_TOMB",
+      "text": "12% is above industry average for our list size, for what it's worth",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1773757620000102"
+    },
+    {
+      "type": "message",
+      "ts": "1773758520.000103",
+      "thread_ts": "1773756120.000100",
+      "user": "U_ACHEN",
+      "text": "+1 to at least looking at the numbers properly before anyone decides",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1773758520000103"
+    }
+  ]
+}

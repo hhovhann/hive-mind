@@ -1,0 +1,50 @@
+{
+  "channel": {
+    "id": "C_GENERAL",
+    "name": "general",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1772788500.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1772788500.000100",
+      "thread_ts": "1772788500.000100",
+      "user": "U_JULES",
+      "text": "Nordwind call yesterday went well overall. They want to co-produce two series a year and they're willing to put real money behind it.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1772788500000100"
+    },
+    {
+      "type": "message",
+      "ts": "1772788680.000101",
+      "thread_ts": "1772788500.000100",
+      "user": "U_JULES",
+      "text": "We did not get anywhere on the revenue split though. They opened at 60/40 their way, I said that wasn't a starting point I could work with, and we left it there.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1772788680000101"
+    },
+    {
+      "type": "message",
+      "ts": "1772790300.000102",
+      "thread_ts": "1772788500.000100",
+      "user": "U_MARCUS",
+      "text": "What's our floor?",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1772790300000102"
+    },
+    {
+      "type": "message",
+      "ts": "1772790600.000103",
+      "thread_ts": "1772788500.000100",
+      "user": "U_JULES",
+      "text": "I'd want 50/50 minimum given we bring the distribution. But I don't have a mandate yet.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1772790600000103"
+    },
+    {
+      "type": "message",
+      "ts": "1772790960.000104",
+      "thread_ts": "1772788500.000100",
+      "user": "U_MARCUS",
+      "text": "Let's not agree to anything until we've modelled it properly.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1772790960000104"
+    }
+  ]
+}

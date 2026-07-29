@@ -1,0 +1,30 @@
+{
+  "uuid": "mtg_5b19d7c204",
+  "topic": "Nordwind Studios — co-production discussion",
+  "start_time": "2026-03-05T14:00:00Z",
+  "end_time": "2026-03-05T14:01:40Z",
+  "scope": {
+    "id": "M_NORDWIND",
+    "visibility": "PUBLIC"
+  },
+  "participants": [
+    {
+      "name": "Jules Rivera",
+      "email": "jules.rivera@meridian.media"
+    },
+    {
+      "name": "Marcus Webb",
+      "email": "marcus.webb@meridian.media"
+    },
+    {
+      "name": "Ingrid Halvorsen",
+      "email": "i.halvorsen@nordwindstudios.no"
+    }
+  ],
+  "recording_files": [
+    {
+      "file_type": "TRANSCRIPT",
+      "file_name": "nordwind-call-2026-03-05.vtt"
+    }
+  ]
+}

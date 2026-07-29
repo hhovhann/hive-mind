@@ -1,0 +1,58 @@
+{
+  "channel": {
+    "id": "C_CONTENT",
+    "name": "content-prod",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1775642700.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1775642700.000100",
+      "thread_ts": "1775642700.000100",
+      "user": "U_DANA",
+      "text": "We have a problem with Frontier. Eps 3 and 4 both need a full recut after the legal review, and I've lost two editors to the Halcyon freelance pool.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_CONTENT/p1775642700000100"
+    },
+    {
+      "type": "message",
+      "ts": "1775642820.000101",
+      "thread_ts": "1775642700.000100",
+      "user": "U_DANA",
+      "text": "Realistically I need six more weeks. May 4 is not happening.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_CONTENT/p1775642820000101"
+    },
+    {
+      "type": "message",
+      "ts": "1775643600.000102",
+      "thread_ts": "1775642700.000100",
+      "user": "U_APETROVA",
+      "text": "How firm is six weeks?",
+      "permalink": "https://meridianmedia.slack.com/archives/C_CONTENT/p1775643600000102"
+    },
+    {
+      "type": "message",
+      "ts": "1775643780.000103",
+      "thread_ts": "1775642700.000100",
+      "user": "U_DANA",
+      "text": "Firm. I'd rather tell you six now than tell you four and come back asking again.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_CONTENT/p1775643780000103"
+    },
+    {
+      "type": "message",
+      "ts": "1775644140.000104",
+      "thread_ts": "1775642700.000100",
+      "user": "U_APETROVA",
+      "text": "OK. We move Frontier to June 15. I'll tell Marcus. Priya, can you redo the promo calendar?",
+      "permalink": "https://meridianmedia.slack.com/archives/C_CONTENT/p1775644140000104"
+    },
+    {
+      "type": "message",
+      "ts": "1775644560.000105",
+      "thread_ts": "1775642700.000100",
+      "user": "U_PRIYA",
+      "text": "Yes. Rebuilding around June 15.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_CONTENT/p1775644560000105"
+    }
+  ]
+}

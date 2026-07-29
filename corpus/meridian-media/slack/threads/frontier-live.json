@@ -1,0 +1,26 @@
+{
+  "channel": {
+    "id": "C_FRONTIER",
+    "name": "frontier-launch",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1780318800.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1780318800.000100",
+      "thread_ts": "1780318800.000100",
+      "user": "U_PRIYA",
+      "text": "Frontier is live. All six episodes scheduled, ep 1 is out now.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1780318800000100"
+    },
+    {
+      "type": "message",
+      "ts": "1780319280.000101",
+      "thread_ts": "1780318800.000100",
+      "user": "U_DANA",
+      "text": "Congratulations everyone. That was a genuinely horrible three weeks.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1780319280000101"
+    }
+  ]
+}

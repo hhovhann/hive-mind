@@ -1,0 +1,34 @@
+{
+  "channel": {
+    "id": "C_ENG",
+    "name": "eng",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1773219900.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1773219900.000100",
+      "thread_ts": "1773219900.000100",
+      "user": "U_PRIYA",
+      "text": "Migration plan looks good to me. Who's owning this end to end?",
+      "permalink": "https://meridianmedia.slack.com/archives/C_ENG/p1773219900000100"
+    },
+    {
+      "type": "message",
+      "ts": "1773220380.000101",
+      "thread_ts": "1773219900.000100",
+      "user": "U_ACHEN",
+      "text": "I'll own it.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_ENG/p1773220380000101"
+    },
+    {
+      "type": "message",
+      "ts": "1773220560.000102",
+      "thread_ts": "1773219900.000100",
+      "user": "U_PRIYA",
+      "text": "Great — Alex owns the CMS migration, target end of Q2.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_ENG/p1773220560000102"
+    }
+  ]
+}

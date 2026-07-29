@@ -1,0 +1,34 @@
+{
+  "channel": {
+    "id": "C_EXEC",
+    "name": "exec",
+    "visibility": "RESTRICTED"
+  },
+  "thread_ts": "1773822600.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1773822600.000100",
+      "thread_ts": "1773822600.000100",
+      "user": "U_MARCUS",
+      "text": "Saw the newsletter thread in general. To be clear: the newsletter is not going anywhere. It is the highest-converting channel we have into paid, by a factor of four.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_EXEC/p1773822600000100"
+    },
+    {
+      "type": "message",
+      "ts": "1773822780.000101",
+      "thread_ts": "1773822600.000100",
+      "user": "U_MARCUS",
+      "text": "We are keeping the newsletter. Consider that settled — I don't want it relitigated every quarter.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_EXEC/p1773822780000101"
+    },
+    {
+      "type": "message",
+      "ts": "1773823800.000102",
+      "thread_ts": "1773822600.000100",
+      "user": "U_APETROVA",
+      "text": "Understood. I'll write it into the strategy doc so it stops coming up.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_EXEC/p1773823800000102"
+    }
+  ]
+}

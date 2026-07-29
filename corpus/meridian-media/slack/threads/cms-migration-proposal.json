@@ -1,0 +1,42 @@
+{
+  "channel": {
+    "id": "C_ENG",
+    "name": "eng",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1772013600.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1772013600.000100",
+      "thread_ts": "1772013600.000100",
+      "user": "U_ACHEN",
+      "text": "The legacy video CMS is now the top source of on-call pages, three weeks running. Every single one is the same transcode queue deadlock.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_ENG/p1772013600000100"
+    },
+    {
+      "type": "message",
+      "ts": "1772013840.000101",
+      "thread_ts": "1772013600.000100",
+      "user": "U_ACHEN",
+      "text": "I want to propose we migrate to Mux and delete the thing rather than keep patching it.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_ENG/p1772013840000101"
+    },
+    {
+      "type": "message",
+      "ts": "1772017200.000102",
+      "thread_ts": "1772013600.000100",
+      "user": "U_PRIYA",
+      "text": "What's the cost delta?",
+      "permalink": "https://meridianmedia.slack.com/archives/C_ENG/p1772017200000102"
+    },
+    {
+      "type": "message",
+      "ts": "1772017680.000103",
+      "thread_ts": "1772013600.000100",
+      "user": "U_ACHEN",
+      "text": "Roughly neutral at our volume. We stop paying for the two EC2 boxes that run the transcode workers.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_ENG/p1772017680000103"
+    }
+  ]
+}

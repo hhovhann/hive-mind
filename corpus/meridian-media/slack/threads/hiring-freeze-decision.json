@@ -1,0 +1,34 @@
+{
+  "channel": {
+    "id": "C_EXEC",
+    "name": "exec",
+    "visibility": "RESTRICTED"
+  },
+  "thread_ts": "1776876300.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1776876300.000100",
+      "thread_ts": "1776876300.000100",
+      "user": "U_MARCUS",
+      "text": "Confirming what we landed on at the offsite: hiring freeze across all departments through the end of Q3. No new reqs and no backfills without my sign-off.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_EXEC/p1776876300000100"
+    },
+    {
+      "type": "message",
+      "ts": "1776876600.000101",
+      "thread_ts": "1776876300.000100",
+      "user": "U_PRIYA",
+      "text": "Including the video producer req that's already posted?",
+      "permalink": "https://meridianmedia.slack.com/archives/C_EXEC/p1776876600000101"
+    },
+    {
+      "type": "message",
+      "ts": "1776876780.000102",
+      "thread_ts": "1776876300.000100",
+      "user": "U_MARCUS",
+      "text": "Pull it down.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_EXEC/p1776876780000102"
+    }
+  ]
+}

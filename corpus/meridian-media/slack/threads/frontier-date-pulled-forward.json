@@ -1,0 +1,50 @@
+{
+  "channel": {
+    "id": "C_FRONTIER",
+    "name": "frontier-launch",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1778060400.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1778060400.000100",
+      "thread_ts": "1778060400.000100",
+      "user": "U_JULES",
+      "text": "Heads up — Halcyon just announced their doc series for July 9. Same subject area, bigger name attached.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1778060400000100"
+    },
+    {
+      "type": "message",
+      "ts": "1778060760.000101",
+      "thread_ts": "1778060400.000100",
+      "user": "U_APETROVA",
+      "text": "That changes things. If we're three weeks behind them we lose the news cycle entirely.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1778060760000101"
+    },
+    {
+      "type": "message",
+      "ts": "1778061240.000102",
+      "thread_ts": "1778060400.000100",
+      "user": "U_DANA",
+      "text": "Eps 5 and 6 are the only ones not finished. I could get us to June 1 if we drop the second cut round on those two.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1778061240000102"
+    },
+    {
+      "type": "message",
+      "ts": "1778061540.000103",
+      "thread_ts": "1778060400.000100",
+      "user": "U_APETROVA",
+      "text": "Do it. Frontier premieres June 1. That's final, we are not moving it again.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1778061540000103"
+    },
+    {
+      "type": "message",
+      "ts": "1778061720.000104",
+      "thread_ts": "1778060400.000100",
+      "user": "U_PRIYA",
+      "text": "June 1 it is. Third calendar. Living the dream.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_FRONTIER/p1778061720000104"
+    }
+  ]
+}

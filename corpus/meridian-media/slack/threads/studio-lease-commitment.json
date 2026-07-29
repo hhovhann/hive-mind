@@ -1,0 +1,34 @@
+{
+  "channel": {
+    "id": "C_GENERAL",
+    "name": "general",
+    "visibility": "PUBLIC"
+  },
+  "thread_ts": "1781775000.000100",
+  "messages": [
+    {
+      "type": "message",
+      "ts": "1781775000.000100",
+      "thread_ts": "1781775000.000100",
+      "user": "U_PRIYA",
+      "text": "Following up on what we agreed in yesterday's ops sync — I'll have the Dunmore Street studio lease signed before the end of Q3.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1781775000000100"
+    },
+    {
+      "type": "message",
+      "ts": "1781775120.000101",
+      "thread_ts": "1781775000.000100",
+      "user": "U_PRIYA",
+      "text": "Flagging it early because if it slips past September the rate goes up 18%.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1781775120000101"
+    },
+    {
+      "type": "message",
+      "ts": "1781777400.000102",
+      "thread_ts": "1781775000.000100",
+      "user": "U_MARCUS",
+      "text": "Good. Don't let it slip.",
+      "permalink": "https://meridianmedia.slack.com/archives/C_GENERAL/p1781777400000102"
+    }
+  ]
+}

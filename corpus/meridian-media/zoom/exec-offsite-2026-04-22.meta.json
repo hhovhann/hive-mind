@@ -1,0 +1,34 @@
+{
+  "uuid": "mtg_c740e28f1d",
+  "topic": "Exec offsite — Q2 planning",
+  "start_time": "2026-04-22T13:00:00Z",
+  "end_time": "2026-04-22T13:01:38Z",
+  "scope": {
+    "id": "M_EXEC_OFFSITE",
+    "visibility": "RESTRICTED"
+  },
+  "participants": [
+    {
+      "name": "Marcus Webb",
+      "email": "marcus.webb@meridian.media"
+    },
+    {
+      "name": "Alexandra Petrova",
+      "email": "alexandra.petrova@meridian.media"
+    },
+    {
+      "name": "Priya Raghunathan",
+      "email": "priya.raghunathan@meridian.media"
+    },
+    {
+      "name": "Jules Rivera",
+      "email": "jules.rivera@meridian.media"
+    }
+  ],
+  "recording_files": [
+    {
+      "file_type": "TRANSCRIPT",
+      "file_name": "exec-offsite-2026-04-22.vtt"
+    }
+  ]
+}
