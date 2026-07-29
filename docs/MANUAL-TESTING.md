@@ -214,6 +214,55 @@ starts failing, something regressed — that is what this command is for.
 
 ---
 
+## 6.5 · The MCP server
+
+Needs no client — the protocol is line-delimited JSON-RPC on stdin and stdout, so a
+here-doc is a complete session. Build the jar first, because Gradle writes to stdout
+and stdout belongs to the protocol:
+
+```bash
+./gradlew :hive-app:bootJar
+
+{ printf '%s\n' \
+  '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"probe","version":"1"}}}' \
+  '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+  '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}' \
+  '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"trace_decision","arguments":{"query":"the Frontier launch date"}}}' \
+  ; sleep 4; } \
+| java -jar hive-app/build/libs/hive-app-0.1.0-SNAPSHOT.jar mcp 2>/dev/null
+```
+
+Expect four tools listed, then the three-version Frontier chain — May 4 → June 15 →
+June 1, oldest first, with only the last marked `CURRENT`.
+
+The `sleep` is not padding. Closing stdin is how an MCP client says *shut down*, so
+without it the server exits the instant `printf` finishes and the replies never get
+written. Holding the pipe open is what a real client does for the length of a session.
+
+**Check that stdout stayed clean.** Drop the `2>/dev/null` and every log line should
+appear on stderr, with nothing but JSON-RPC on stdout. A stray line on stdout is the
+one failure mode that breaks every client and names no culprit.
+
+**The access-control demonstration, again.** Run the same `search_knowledge` call for
+`Is there a hiring freeze?` with and without `--grants=slack:C_EXEC,zoom:M_EXEC_OFFSITE,notion:P_BOARD_Q1`.
+Without them the result should carry `At least 7 further facts match this question and
+are outside this reader's access`; with them, the hiring-freeze facts themselves and no
+such line. Confirm too that no tool in `tools/list` accepts a `grants` argument — the
+reader is fixed at launch, and a model that could name its own grants would.
+
+Over HTTP instead, with the server running:
+
+```bash
+curl -sD - -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
+  -X POST http://localhost:8080/mcp \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"curl","version":"1"}}}'
+```
+
+Take the `Mcp-Session-Id` header from the response and send it back on every
+subsequent request. Replies arrive as SSE, so the JSON is on a `data:` line.
+
+---
+
 ## 7 · Browsing it
 
 ```bash
@@ -235,4 +284,6 @@ callout — the history is walkable rather than merely queryable.
 | Answer declines when the fact exists | Same — the fact is probably marked superseded by mistake |
 | A person owns work that is not theirs | `load` output, `deterministic share`, then `entities.json` |
 | Extraction finds nothing in an episode | The episode may genuinely establish nothing; check `dropped` |
+| An MCP client connects and immediately drops | Something wrote to stdout — run the session without `2>/dev/null` and look for a non-JSON line |
+| An MCP tool returns nothing for a reader | Check the withheld count in the result; the facts may exist and be closed to them |
 | Everything times out, curl works | HTTP/2 versus a local model server — see `LlmProbe` |

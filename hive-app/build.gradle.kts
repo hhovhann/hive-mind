@@ -20,6 +20,9 @@ dependencies {
     implementation(libs.spring.boot.neo4j)
     implementation(libs.jackson.databind)
     implementation(libs.jackson.jsr310)
+    implementation(libs.mcp.core)
+    implementation(libs.mcp.json.jackson2)
+    implementation(libs.mcp.spring.webmvc)
 }
 
 tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
@@ -28,4 +31,8 @@ tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
     // Java 21 virtual threads: every request here is I/O-bound on an LLM or on
     // Neo4j, so platform threads would be idle capital.
     jvmArgs("-Dspring.threads.virtual.enabled=true")
+    // The `mcp` command reads JSON-RPC from stdin, which Gradle otherwise closes
+    // immediately. Note that Gradle still owns stdout here, so this is for poking at
+    // the server by hand — a real client should launch the built jar.
+    standardInput = System.`in`
 }

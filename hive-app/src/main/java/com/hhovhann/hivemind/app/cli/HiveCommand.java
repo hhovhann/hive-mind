@@ -16,7 +16,9 @@ public enum HiveCommand {
     LOAD("load"),
     ASK("ask"),
     EVALUATE("evaluate"),
-    EXPORT("export");
+    EXPORT("export"),
+    /** Not a one-shot: prints nothing and runs until the MCP client closes the pipe. */
+    MCP("mcp");
 
     private final String token;
 

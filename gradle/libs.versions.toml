@@ -4,6 +4,7 @@ springBoot = "4.1.0"
 langchain4j = "1.18.0"
 testcontainers = "2.0.5"
 assertj = "3.27.3"
+mcp = "0.18.2"
 
 [libraries]
 # BOMs — imported as platforms, so module build files stay version-free
@@ -29,6 +30,12 @@ neo4j-driver = { module = "org.neo4j.driver:neo4j-java-driver" }
 # Boot 4 split spring-boot-autoconfigure into per-technology modules; the Neo4j
 # Driver bean now comes from here rather than from the driver being on the classpath.
 spring-boot-neo4j = { module = "org.springframework.boot:spring-boot-neo4j" }
+
+# Model Context Protocol — the server half of the SDK, plus its Jackson 2 binding
+# (the same Jackson generation this project already uses) and the WebMvc transport.
+mcp-core = { module = "io.modelcontextprotocol.sdk:mcp-core", version.ref = "mcp" }
+mcp-json-jackson2 = { module = "io.modelcontextprotocol.sdk:mcp-json-jackson2", version.ref = "mcp" }
+mcp-spring-webmvc = { module = "io.modelcontextprotocol.sdk:mcp-spring-webmvc", version.ref = "mcp" }
 
 # Serialization
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind" }

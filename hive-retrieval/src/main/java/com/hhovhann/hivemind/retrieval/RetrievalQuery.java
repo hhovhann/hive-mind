@@ -29,6 +29,11 @@ public record RetrievalQuery(String question, Principal principal, Instant asOf,
         return new RetrievalQuery(question, principal, moment, seedLimit, finalLimit);
     }
 
+    /** Narrows what reaches the context pack. Seeding is unchanged: the funnel is the point. */
+    public RetrievalQuery limitedTo(int cards) {
+        return new RetrievalQuery(question, principal, asOf, seedLimit, cards);
+    }
+
     public boolean isHistorical() {
         return asOf != null;
     }

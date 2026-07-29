@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -111,13 +110,7 @@ public class AskRunner implements ApplicationRunner {
     }
 
     private static Principal principalFrom(String[] args) {
-        Set<String> grants = HiveCommand.option(args, "grants")
-                .map(value -> Arrays.stream(value.split(","))
-                        .map(String::strip)
-                        .filter(grant -> !grant.isBlank())
-                        .collect(Collectors.toSet()))
-                .orElse(Set.of());
-        return grants.isEmpty() ? Principal.ANONYMOUS : new Principal("cli", grants);
+        return Principal.parse("cli", HiveCommand.option(args, "grants").orElse(null));
     }
 
     private static String indent(String text) {

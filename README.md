@@ -106,8 +106,11 @@ docker compose -f deploy/docker-compose.yml up -d --wait
 ./gradlew :hive-app:bootRun --args='evaluate'
 ./gradlew :hive-app:bootRun --args='export'
 
-# 8. Run it as a server
+# 8. Run it as a server — REST on :8080, MCP at POST /mcp
 ./gradlew :hive-app:bootRun
+
+# 9. Or as an MCP server on stdio, for an agent to call
+./gradlew :hive-app:bootRun --args='mcp'
 ```
 
 `doctor` exits non-zero when a dependency is unusable, so it works as a CI gate.
@@ -412,6 +415,145 @@ java scripts/loadtest/LoadTest.java --endpoint retrieve --ramp 1,10,50,200
 java scripts/loadtest/LoadTest.java --endpoint ask --ramp 1,4,16 --seconds 25
 ```
 
+## Handing it to an agent
+
+```bash
+./gradlew :hive-app:bootRun --args='mcp'                        # stdio
+./gradlew :hive-app:bootRun --args='mcp --grants=slack:C_EXEC'  # …as a reader who can see more
+./gradlew :hive-app:bootRun                                     # …or POST /mcp alongside the REST API
+```
+
+Four tools, over the graph that is already there:
+
+| Tool | Answers |
+|---|---|
+| `search_knowledge` | What did we decide about X — as numbered cards, optionally as of a past date |
+| `trace_decision` | How did this get to where it is — every version, oldest first, both directions from the seed |
+| `find_owner` | Who is on the hook — from the resolved `OWNED_BY` edge, never from the wording |
+| `path_between` | How are these two connected at all — shortest routes, with each edge's direction |
+
+**The tools retrieve; they do not answer.** That is the whole shape of the thing.
+`/api/ask` runs retrieval *and* generation because an HTTP caller wants a sentence.
+An MCP caller **is** the model, so the half worth exposing is the one that stops at
+the context pack — the same seam `/api/retrieve` was already split along for load
+testing, which is a good sign it is a real seam and not a convenience.
+
+**The caller does not get to name its own grants.** `/api/ask` takes them in the
+request body and says in its own comments that this is a development affordance. That
+affordance cannot come along here: a tool argument is written by a model, from text
+that may have come out of the corpus, so a `grants` parameter is an instruction to
+escalate and the model has no reason to decline it. The reader is fixed when the
+server starts — `--grants=` on stdio, `hive.mcp.grants` over HTTP — and no argument
+moves it. There is a test asserting no tool declares one, because this is the sort of
+thing a helpful refactor adds back.
+
+### The leak-by-inference fix, finally landed
+
+The failure documented above — a reader without the exec grants gets the public
+fragments of a restricted topic and reasons a confident answer out of them — gets
+strictly worse over MCP, because the generating model is now outside this codebase
+entirely. There is no prompt left to tighten. So the second of the two fixes named
+above is the one that shipped: **tell the caller when facts were withheld.**
+
+```
+Q: Is there a hiring freeze?          (no special access)
+   4 facts, read as a reader with no special access.
+   At least 7 further facts match this question and are outside this reader's access.
+   Answer only from the cards below, and say the record is incomplete rather than
+   inferring what the withheld facts might say.
+
+Q: Is there a hiring freeze?          (holding the exec grants)
+   3 facts, read as a reader holding notion:P_BOARD_Q1, slack:C_EXEC, zoom:M_EXEC_OFFSITE.
+   [3] DECISION — CURRENT (AGREED)  The hiring freeze is in place through the end of Q3.
+```
+
+Two things about that count. It is a **floor, not an estimate** — the keyword half of
+the seed only, so no embedding round trip and the honest phrasing is "at least". And
+it discloses a number and nothing else: no statement, no date, no topic, no source.
+That is still a policy choice rather than a free win — it converts "invisible" into
+"acknowledged redaction", and a reader now learns that restricted material on this
+topic exists. That trade is worth making here and might not be everywhere, which is
+why it is one query in one place rather than a change to retrieval.
+
+### Filtering a path is harder than filtering a list
+
+Dropping rows a reader may not have is easy. A **path** is not, because a path that
+runs through a fact you cannot read is itself a disclosure — it asserts two things are
+connected and the only reason to believe it is the hidden step in the middle. So every
+traversal carries the predicate into the expansion rather than applying it to the
+result: `ALL(n IN nodes(path) WHERE …)`, not a filter on the endpoints. A chain stops
+at the first link the reader cannot see, and a path needing an unreadable node does not
+exist as far as they are concerned.
+
+The same reasoning removed two edge types from `path_between` entirely. `EVIDENCED_BY`
+and `SPOKEN_BY` run through `Utterance`, which carries no `aclGrants` of its own — it
+inherits its episode's — and the expansion cannot do that join while it walks. Rather
+than return a path whose readability was never actually checked, those edges are out,
+and people connect through the facts they own, are involved in, and the topics those
+are about. Which is enough:
+
+```
+3 shortest paths between Person "Alex Chen" and Topic "nordwind", 4 hops.
+
+  1. Person "Alex Chen"
+       <-[OWNED_BY]-  Fact "The cost delta for migrating to Mux is roughly neutral."  (current)
+       -[INVOLVES]->  Person "Priya Raghunathan"
+       <-[INVOLVES]-  Fact "Nothing is committed regarding the Nordwind co-production."  (current)
+       -[ABOUT]->     Topic "nordwind"
+```
+
+Asked for `Alex`, it returns both Alexes and asks which — the identity decoy answered
+by refusing to guess. Asked for a person's email or a Slack handle, it resolves through
+the same directory identity resolution used at load time.
+
+### Two things it turned up
+
+**`trace_decision` walks straight into the Q4 bug and shows it.** Asked about the
+newsletter, it returns the fact that answers the question *and* the reason `ask`
+declines to use it:
+
+```
+  2026-03-19  SUPERSEDED  The newsletter will be kept.
+              true from 2026-03-19 until 2026-03-19
+  2026-03-19  CURRENT     The decision to keep the newsletter is not up for review before 2027 planning.
+```
+
+A validity interval of zero width. The Notion page that *reaffirms* a decision was
+judged a revision of it, so the fact was born and closed on the same day. This does
+not fix the false supersession — supersession precision is still the weakest link —
+but handing an agent the chain instead of a filtered current-state view means the
+answer survives the bug, and a zero-length interval is a cheap thing to detect.
+
+**stdout is a wire, not a console.** On stdio, one Spring startup line lands in the
+middle of a JSON-RPC frame and the client drops the session with a parse error naming
+nothing. `System.out` is pointed at stderr before Spring starts and the transport is
+handed the file descriptor directly — more reliable than finding every writer, since
+it also catches logging, libraries, and the `System.out.printf` the other CLI runners
+are built on.
+
+### Pointing a client at it
+
+```json
+{
+  "mcpServers": {
+    "hive-mind": {
+      "command": "java",
+      "args": ["-jar", "/path/to/hive-app-0.1.0-SNAPSHOT.jar", "mcp",
+               "--grants=slack:C_EXEC"]
+    }
+  }
+}
+```
+
+Use the built jar rather than `bootRun` — Gradle writes to stdout too, and stdout
+belongs to the protocol.
+
+The HTTP endpoint is single-principal for the same reason it has no auth: real
+per-principal grants have to be materialised from the source systems, which is the
+next milestone, and inventing a header to carry them meanwhile would look like
+authentication without being any. Bind it to localhost or put it behind something
+that knows who is calling.
+
 ## Browsing it
 
 ```bash
@@ -438,7 +580,7 @@ browse on a Sunday.
 | `hive-graph` | Neo4j persistence, bi-temporal writes, supersession. |
 | `hive-retrieval` | Hybrid seed → expand → rerank → context assembly. |
 | `hive-eval` | Gold set, extraction precision/recall, answer faithfulness. |
-| `hive-app` | Spring Boot: REST, CLI, wiring. |
+| `hive-app` | Spring Boot: REST, MCP server, CLI, wiring. |
 
 ## Design decisions
 
@@ -480,13 +622,11 @@ credentials to verify against the real APIs.
 - [ ] Notion — incremental sync on `last_edited_time`
 - [ ] Zoom — recording webhooks, plus Whisper and diarisation for audio-only meetings
 
-**M3 — production concerns.** One of four done.
+**M3 — production concerns.** Two of four done.
 
 - [x] REST API (`/api/ask`, `/api/retrieve`) and load test at 200 concurrent
-- [ ] RBAC — materialise per-principal grants from the source systems and cache them
-      in Redis, which is in the compose file and currently unused. The grant model and
-      its enforcement in Cypher are built; what is missing is where real grants come from
-- [ ] MCP server — expose `search_knowledge`, `trace_decision`, `find_owner` as tools
+- [x] MCP server — `search_knowledge`, `trace_decision`, `find_owner`, `path_between` over stdio and streamable HTTP
+- [ ] RBAC — materialise per-principal grants from the source systems and cache them in Redis, which is in the compose file and currently unused. The grant model and its enforcement in Cypher are built; what is missing is where real grants come from
 - [ ] Slack app — `/hive` command and thread mentions
 
 ## License
